@@ -1,0 +1,662 @@
+/* Figma design tokens – Maksim (Desktop 467-716, Mobile 467-786) */
+:root {
+    --stroke-0: #181818;
+    --bg-color: #111111;
+    --dot-color: #181818;
+    --dot-size: 0.5px;
+    --dot-gap: 14px;
+    --space-10: 10px;
+    --space-14: 14px;
+    --space-20: 20px;
+    --frame-desktop: 1440px;
+    --text-16: 16px;
+    --leading-18: 18px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--bg-color);
+    color: #eee;
+    font-family: 'Geist', sans-serif;
+    font-weight: 200;
+    font-size: var(--text-16);
+    line-height: var(--leading-18);
+    letter-spacing: 0;
+    font-feature-settings: 'lnum', 'pnum';
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    min-width: 0;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+        radial-gradient(var(--dot-color) var(--dot-size), transparent calc(var(--dot-size) + 0.5px)),
+        radial-gradient(60% 60% at 50% 0%, rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.55));
+    background-size: var(--dot-gap) var(--dot-gap), 100% 100%;
+    background-position: center, 0 0;
+}
+
+/* Skip link for accessibility */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #eee;
+    color: #111;
+    padding: 8px;
+    text-decoration: none;
+    z-index: 100;
+    font-family: 'Geist', sans-serif;
+    font-weight: 200;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* Scale stage – no horizontal scroll at any breakpoint */
+.scale-stage {
+    width: 100%;
+    max-width: 100vw;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: visible;
+}
+
+/* Desktop frame 467-716: 1440px design canvas */
+.container {
+    position: relative;
+    z-index: 1;
+    width: var(--frame-desktop);
+    min-height: 100vh;
+    padding: var(--space-20);
+    display: flex;
+    flex-direction: column;
+    gap: 200px;
+    transform-origin: top left;
+}
+
+/* Background Lines – та же сетка, что и у ряда изображений: 5 колонок + 4 gap по 14px */
+.background-lines {
+    position: absolute;
+    top: 0;
+    left: var(--space-20);
+    right: var(--space-20);
+    bottom: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) var(--space-14) minmax(0, 1fr) var(--space-14) minmax(0, 1fr) var(--space-14) minmax(0, 1fr) var(--space-14) minmax(0, 1fr);
+    grid-template-rows: 1fr;
+    align-items: stretch;
+    gap: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.line-left {
+    grid-column: 1;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background-color: #181818;
+}
+
+.line-right {
+    grid-column: 9;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background-color: #181818;
+}
+
+.vertical-line-group {
+    width: var(--space-14);
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.vertical-line {
+    width: 1px;
+    height: 100%;
+    background-color: #181818;
+}
+
+.vertical-line-group:nth-child(2) { grid-column: 2; }
+.vertical-line-group:nth-child(3) { grid-column: 4; }
+.vertical-line-group:nth-child(4) { grid-column: 6; }
+.vertical-line-group:nth-child(5) { grid-column: 8; }
+
+/* Header */
+.header {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+.header-content {
+    display: flex;
+    gap: 0;
+    align-items: flex-end;
+    width: 100%;
+}
+
+.logo {
+    width: 102px;
+    height: 38px;
+    flex-shrink: 0;
+    margin-right: var(--space-20);
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.title-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    text-transform: uppercase;
+    min-width: 0;
+    font-weight: 200;
+}
+
+.name {
+    font-size: 16px;
+    line-height: 18px;
+    white-space: nowrap;
+    font-weight: 200;
+}
+
+.name-bold {
+    font-family: 'Geist', sans-serif;
+    font-weight: 500;
+    color: #eee;
+}
+
+.name-light {
+    font-family: 'Geist', sans-serif;
+    font-weight: 200;
+}
+
+.current-role {
+    font-family: 'Geist', sans-serif;
+    font-weight: 200;
+    font-size: 16px;
+    line-height: 18px;
+    white-space: nowrap;
+}
+
+.contact-info {
+    width: 264px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-family: 'Geist', sans-serif;
+    font-weight: 200;
+    font-size: 16px;
+    line-height: 18px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    flex-shrink: 0;
+    text-align: right;
+}
+
+.contact-mail {
+    color: inherit;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.contact-mail:hover {
+    opacity: 0.7;
+}
+
+.contact-mail:focus {
+    outline: none;
+}
+
+.divider {
+    width: 100%;
+    height: 1px;
+    background-color: #181818;
+}
+
+/* Project Section */
+.project-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+.project-header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.project-title-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    text-transform: uppercase;
+    font-size: 16px;
+    width: 100%;
+    font-weight: 200;
+}
+
+.project-title {
+    font-family: 'Geist', sans-serif;
+    font-weight: 500;
+    line-height: 18px;
+    white-space: pre-wrap;
+}
+
+.project-date {
+    font-family: 'Geist Mono', monospace;
+    font-weight: 200;
+    line-height: 18px;
+    white-space: pre-wrap;
+}
+
+.project-description {
+    width: 548px;
+    flex-shrink: 0;
+}
+
+.project-description p {
+    font-family: 'Geist', sans-serif;
+    font-weight: 200;
+    font-size: 14px;
+    line-height: 18px;
+    text-transform: capitalize;
+    white-space: pre-wrap;
+}
+
+.project-description .highlight {
+    color: #eee;
+    font-weight: 200;
+}
+
+.project-images-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* Та же сетка, что и у фоновых линий: 5 колонок + 4 gap по 14px — зазоры совпадают с линиями */
+.project-images {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) var(--space-14) minmax(0, 1fr) var(--space-14) minmax(0, 1fr) var(--space-14) minmax(0, 1fr) var(--space-14) minmax(0, 1fr);
+    gap: 0;
+    width: 100%;
+}
+
+.image-placeholder {
+    aspect-ratio: 206.97940063476562 / 450;
+    background-color: #eee;
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+}
+
+.image-placeholder:nth-child(1) { grid-column: 1; }
+.image-placeholder:nth-child(2) { grid-column: 3; }
+.image-placeholder:nth-child(3) { grid-column: 5; }
+.image-placeholder:nth-child(4) { grid-column: 7; }
+.image-placeholder:nth-child(5) { grid-column: 9; }
+
+/* Footer */
+.footer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+.footer-links {
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr 1px 1fr 1px 1fr 1px 1fr;
+    gap: 0;
+    width: 100%;
+    text-transform: uppercase;
+    font-size: 16px;
+    line-height: 18px;
+    text-align: center;
+    font-weight: 200;
+}
+
+.footer-link {
+    color: #eee;
+    text-decoration: none;
+    font-family: 'Geist', sans-serif;
+    font-weight: 200;
+    white-space: pre-wrap;
+    transition: opacity 0.3s ease;
+}
+
+.footer-link:hover {
+    opacity: 0.7;
+}
+
+.footer-link:focus {
+    outline: none;
+}
+
+.footer-link.go-up {
+    font-weight: 500;
+}
+
+.footer-link:nth-child(1) { grid-column: 1; }
+.footer-link:nth-child(2) { grid-column: 3; border-left: 1px solid var(--stroke-0); }
+.footer-link:nth-child(3) { grid-column: 5; border-left: 1px solid var(--stroke-0); }
+.footer-link:nth-child(4) { grid-column: 7; border-left: 1px solid var(--stroke-0); }
+.footer-link:nth-child(5) { grid-column: 9; border-left: 1px solid var(--stroke-0); }
+
+/* ============================================
+   RESPONSIVE / ADAPTIVE LAYOUT
+   Consistent 20px padding across all breakpoints
+   ============================================ */
+
+/* Tablet (768px - 1439px) – between desktop and mobile frames */
+@media (max-width: 1439px) and (min-width: 768px) {
+    .container {
+        width: 100%;
+        max-width: 100%;
+        padding: var(--space-20);
+        gap: 200px;
+    }
+
+    /* Header – одна строка: logo | title | contact-info */
+    .header-content {
+        flex-wrap: nowrap;
+        align-items: flex-end;
+    }
+
+    .logo {
+        width: 102px;
+        height: 38px;
+        flex-shrink: 0;
+    }
+
+    .title-main {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .name,
+    .current-role {
+        white-space: normal;
+    }
+
+    .contact-info {
+        width: auto;
+        max-width: 264px;
+        flex-shrink: 0;
+        text-align: right;
+        margin-top: 0;
+    }
+
+    /* Project section – те же 5 изображений в ряд, та же сетка что и на десктопе */
+    .project-description {
+        width: 100%;
+        max-width: 600px;
+    }
+
+    .project-images {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) var(--space-14) minmax(0, 1fr) var(--space-14) minmax(0, 1fr) var(--space-14) minmax(0, 1fr) var(--space-14) minmax(0, 1fr);
+        gap: 0;
+    }
+
+    .image-placeholder {
+        aspect-ratio: 206.97940063476562 / 450;
+        width: 100%;
+    }
+
+    /* Footer - horizontal with separators */
+    .footer-links {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 14px;
+    }
+
+    .footer-link {
+        grid-column: auto !important;
+    }
+}
+
+/* Mobile frame 467-786: up to 767px – контент от края до края, как от 768 и выше */
+@media (max-width: 767px) {
+    .scale-stage {
+        overflow-x: visible;
+    }
+
+    /* Фоновые линии: только по краям контента + две в центре по гепу 14px между изображениями */
+    .background-lines {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: var(--space-20);
+        right: var(--space-20);
+        bottom: 0;
+    }
+
+    .line-left {
+        left: 0;
+    }
+
+    .line-right {
+        right: 0;
+        left: auto;
+    }
+
+    .vertical-line-group:nth-child(4),
+    .vertical-line-group:nth-child(5) {
+        display: none;
+    }
+
+    /* Центральные линии точно по границам гэпа 14px: левая граница 50%−7px, правая 50%+7px */
+    .vertical-line-group:nth-child(2) {
+        position: absolute;
+        left: calc(50% - var(--space-14) / 2);
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        grid-column: unset;
+    }
+
+    .vertical-line-group:nth-child(2) .vertical-line:last-child {
+        display: none;
+    }
+
+    .vertical-line-group:nth-child(3) {
+        position: absolute;
+        left: calc(50% + var(--space-14) / 2);
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        grid-column: unset;
+    }
+
+    .vertical-line-group:nth-child(3) .vertical-line:last-child {
+        display: none;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        padding: var(--space-20);
+        gap: 100px;
+        overflow-x: visible;
+    }
+
+    /* Header – vertical stack (Figma order: logo → name/role → contact) */
+    .header {
+        gap: var(--space-20);
+    }
+
+    .header-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-20);
+    }
+
+    .logo {
+        width: 102px;
+        height: 38px;
+    }
+
+    .title-main {
+        width: 100%;
+    }
+
+    .name,
+    .current-role {
+        white-space: normal;
+    }
+
+    .contact-info {
+        width: 100%;
+        text-align: right;
+        align-self: flex-end;
+    }
+
+    /* Project section — как на целевом мобильном макете */
+    .project-section {
+        gap: var(--space-20);
+    }
+
+    .project-title-wrapper {
+        font-size: 18px;
+    }
+
+    .project-title {
+        font-size: 18px;
+        line-height: 1.2;
+    }
+
+    /* Год без изменения размера — как на десктопе (16px) */
+    .project-date {
+        font-size: 16px;
+    }
+
+    .project-description {
+        width: 100%;
+    }
+
+    .project-description p {
+        white-space: normal;
+    }
+
+    /* Images: видимая часть скролла = вся ширина project-section; горизонтальный скролл, два блока по 50%, линия между ними */
+    .project-images-container {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .project-images {
+        display: flex;
+        flex-direction: row;
+        gap: 0;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+        padding-bottom: var(--space-10);
+    }
+
+    .project-images::-webkit-scrollbar {
+        height: 4px;
+    }
+
+    .project-images::-webkit-scrollbar-track {
+        background: var(--stroke-0);
+    }
+
+    .project-images::-webkit-scrollbar-thumb {
+        background: #eee;
+        border-radius: 2px;
+    }
+
+    /* Ширина блока = 50% − 7px, чтобы границы совпадали с вертикальными линиями (50%±7px) */
+    .image-placeholder {
+        flex: 0 0 calc(50% - var(--space-14) / 2);
+        width: calc(50% - var(--space-14) / 2);
+        min-width: calc(50% - var(--space-14) / 2);
+        aspect-ratio: 206.97940063476562 / 450;
+        scroll-snap-align: start;
+        background-color: #eee;
+        border-radius: 0;
+        grid-column: unset;
+        flex-shrink: 0;
+    }
+
+    /* Тонкая тёмная линия между блоками; зазор 14px между блоками */
+    .image-placeholder:nth-child(1) {
+        border-right: 1px solid var(--stroke-0);
+        margin-left: 0;
+    }
+
+    .image-placeholder:nth-child(n + 2) {
+        margin-left: var(--space-14);
+    }
+
+    /* Footer – vertical list, gap 8px (Figma) */
+    .footer-links {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+    }
+
+    .footer-link {
+        width: 100%;
+        grid-column: auto !important;
+        border-left: none;
+    }
+
+    .footer-link.go-up {
+        padding-bottom: 8px;
+        margin-bottom: 0;
+        border-bottom: 1px solid var(--stroke-0);
+    }
+}
+
+/* Small mobile (up to 479px) – 100px между секциями, два блока по 50% сохраняются */
+@media (max-width: 479px) {
+    .container {
+        gap: 100px;
+    }
+}
