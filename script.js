@@ -97,6 +97,19 @@ function init() {
             });
         });
     }
+
+    // Скроллбар блока изображений: показывать только при прокрутке (на мобильной скроллит .project-images-wrapper)
+    const projectImagesWrapper = document.querySelector('.project-images-wrapper');
+    if (projectImagesWrapper) {
+        let scrollTimeout;
+        projectImagesWrapper.addEventListener('scroll', function() {
+            projectImagesWrapper.classList.add('is-scrolling');
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(function() {
+                projectImagesWrapper.classList.remove('is-scrolling');
+            }, 500);
+        });
+    }
 }
 
 // Run when DOM is ready
