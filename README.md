@@ -4,10 +4,17 @@ A minimalist portfolio website for Product Designer Maksim Gorbunov, implemented
 
 ## Structure
 
-- `index.html` - Main HTML file
-- `styles.css` - Stylesheet with responsive design
-- `script.js` - Layout and scroll behavior
-- `logo.png` - Logo image
+```
+├── index.html          # Entry point
+├── README.md
+├── .gitignore
+└── assets/
+    ├── css/
+    │   └── main.css    # Styles
+    ├── js/
+    │   └── main.js     # Layout & behavior
+    └── images/         # Project screenshots (Screen-1.png … Screen-5.png)
+```
 
 ## Features
 
@@ -15,15 +22,14 @@ A minimalist portfolio website for Product Designer Maksim Gorbunov, implemented
 - Responsive layout that adapts to different screen sizes
 - Background grid pattern for visual interest
 - Smooth scroll to top functionality
-- Project showcase section with image placeholders
+- Project showcase section with images
 - Social media links in footer
 
 ## Fonts
 
 The website uses Google Fonts:
-- **Geist** (ExtraLight 200, Medium 500) - Main text
-- **Geist Mono** (ExtraLight 200) - Dates and monospace text
-- **Noto Sans Symbols 2** - For special characters (✦)
+- **Geist** (200, 300) - Main text
+- **Geist Mono** (200) - Dates and monospace text
 
 ## Customization
 
@@ -34,9 +40,9 @@ To add your own project content:
 1. Replace "Project Title" with your project name
 2. Update the date range "1995 — Now"
 3. Modify the project description text
-4. Replace the `.image-placeholder` divs with actual images:
+4. Replace images in `.image-placeholder` divs or add new ones:
    ```html
-   <img src="your-image.jpg" alt="Project description">
+   <div class="image-placeholder"><img src="assets/images/your-image.png" alt="Description"></div>
    ```
 
 ### Adding Social Links
@@ -50,8 +56,8 @@ Update the footer links with your actual social media profiles:
 
 Main colors are defined in CSS:
 - Background: `#111`
-- Text: `#e5e5ea`
-- Line color: `#1F1F1F` (defined as `--stroke-0` CSS variable)
+- Text: `#eee`
+- Lines / strokes: `#181818` (variable `--stroke-0`)
 
 ## Development
 
