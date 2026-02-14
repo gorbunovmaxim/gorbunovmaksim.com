@@ -8,12 +8,13 @@ A minimalist portfolio website for Product Designer Maksim Gorbunov, implemented
 ├── index.html          # Entry point
 ├── README.md
 ├── .gitignore
+├── CNAME               # Custom domain for GitHub Pages (gorbunovmaksim.com)
 └── assets/
     ├── css/
     │   └── main.css    # Styles
     ├── js/
     │   └── main.js     # Layout & behavior
-    └── images/         # Project screenshots (Screen-1.png … Screen-5.png)
+    └── images/         # Screenshots (Screen-1…5.png) + favicon.png
 ```
 
 ## Features
