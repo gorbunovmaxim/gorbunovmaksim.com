@@ -1,69 +1,45 @@
-# Maksim Gorbunov Portfolio Website
+# Maksim Gorbunov Portfolio
 
-A minimalist portfolio website for Product Designer Maksim Gorbunov, implemented from Figma design.
+Static portfolio website for Maksim Gorbunov.
 
-## Structure
+## Project structure
 
 ```
-├── index.html          # Entry point
-├── README.md
-├── .gitignore
-├── CNAME               # Custom domain for GitHub Pages (gorbunovmaksim.com)
-└── assets/
-    ├── css/
-    │   └── main.css    # Styles
-    ├── js/
-    │   └── main.js     # Layout & behavior
-    └── images/         # Screenshots (Screen-1…5.png) + favicon.png
+.
+├── index.html
+├── CNAME
+├── assets/
+│   ├── css/
+│   │   └── main.css
+│   ├── js/
+│   │   └── main.js
+│   └── images/
+│       ├── favicon.png
+│       └── Screen-0.png ... Screen-8.png
+└── README.md
 ```
 
-## Features
+## Current behavior
 
-- Clean, modern dark theme (#111 background)
-- Responsive layout that adapts to different screen sizes
-- Background grid pattern for visual interest
-- Smooth scroll to top functionality
-- Project showcase section with images
-- Social media links in footer
+- Dark dotted background with monochrome typography.
+- Responsive gallery:
+  - Desktop: large first image + 3 images in first row, 5 images in second row.
+  - Tablet/mobile (`<=920px`): unified 2-column mosaic with the first image full width.
+- `go up` link is fixed at the bottom center (`20px` from viewport bottom) and scrolls to top with smooth animation.
 
-## Fonts
+## Local run
 
-The website uses Google Fonts:
-- **Geist** (200, 300) - Main text
-- **Geist Mono** (200) - Dates and monospace text
+Use any static server, for example:
 
-## Customization
-
-### Adding Projects
-
-To add your own project content:
-
-1. Replace "Project Title" with your project name
-2. Update the date range "1995 — Now"
-3. Modify the project description text
-4. Replace images in `.image-placeholder` divs or add new ones:
-   ```html
-   <div class="image-placeholder"><img src="assets/images/your-image.png" alt="Description"></div>
-   ```
-
-### Adding Social Links
-
-Update the footer links with your actual social media profiles:
-```html
-<a href="https://instagram.com/yourprofile" class="footer-link">Instagram</a>
+```bash
+python3 -m http.server 4173
 ```
 
-### Color Customization
+Then open `http://localhost:4173`.
 
-Main colors are defined in CSS:
-- Background: `#111`
-- Text: `#eee`
-- Lines / strokes: `#181818` (variable `--stroke-0`)
+## Editing content
 
-## Development
-
-Simply open `index.html` in a web browser to view the website. No build process required.
-
-## Browser Support
-
-Works in all modern browsers (Chrome, Firefox, Safari, Edge).
+- Text/content is in `index.html`.
+- Styles are in `assets/css/main.css`.
+- Scroll/scale behavior is in `assets/js/main.js`.
+- Replace project visuals by updating `assets/images/Screen-0.png ... Screen-8.png`.
