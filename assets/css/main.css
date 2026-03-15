@@ -149,7 +149,7 @@ body::before {
 
 .project {
     margin-top: 184px;
-    padding-bottom: 72px;
+    padding-bottom: 0;
 }
 
 .project-kicker {
@@ -220,30 +220,50 @@ body::before {
 @media (max-width: 920px) {
     .site {
         padding-inline: var(--page-padding);
+        padding-top: 25px;
     }
 
     .hero {
-        grid-template-columns: 1fr auto;
-        grid-template-areas:
-            "name links"
-            "about about";
-        row-gap: 14px;
+        display: block;
+        font-size: 20px;
+        line-height: 1.3;
     }
 
     .hero-name {
-        grid-area: name;
+        max-width: 352px;
     }
 
     .hero-about {
-        grid-area: about;
+        max-width: 352px;
+        margin-top: 139px;
+    }
+
+    .hero-about p:nth-child(3) {
+        margin-top: 26px;
     }
 
     .hero-links {
-        grid-area: links;
+        margin-top: 26px;
+        align-items: flex-start;
+        text-align: left;
+        font-size: 20px;
+        line-height: 1.4;
     }
 
     .project {
-        margin-top: 56px;
+        margin-top: 132px;
+    }
+
+    .project-kicker,
+    .footer-soon,
+    .footer-photo figcaption {
+        font-size: 20px;
+        line-height: 1.3;
+    }
+
+    .footer .go-up-link {
+        font-size: 20px;
+        line-height: 1.3;
     }
 
     .gallery-stack {
@@ -275,9 +295,36 @@ body::before {
 
 .footer {
     display: flex;
-    justify-content: center;
-    padding-top: 56px;
+    flex-direction: column;
+    align-items: center;
+    gap: 184px;
+    padding-top: 184px;
     padding-bottom: 20px;
+    text-align: center;
+}
+
+.footer-soon {
+    text-align: center;
+}
+
+.footer-photo {
+    width: min(100%, 548px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+}
+
+.footer-photo img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 548 / 364;
+    object-fit: cover;
+    display: block;
+}
+
+.footer-photo figcaption {
+    text-align: center;
 }
 
 .go-up-link {
@@ -295,34 +342,4 @@ body::before {
 .go-up-link:focus-visible {
     outline: 1px solid var(--text-color);
     outline-offset: 2px;
-}
-
-@media (max-width: 640px) {
-    .site {
-        padding-inline: var(--page-padding);
-    }
-
-    .hero {
-        grid-template-columns: 1fr;
-        grid-template-areas:
-            "name"
-            "about"
-            "links";
-        row-gap: 10px;
-    }
-
-    .hero-links {
-        align-items: flex-start;
-        text-align: left;
-    }
-
-    .project {
-        margin-top: 44px;
-        padding-bottom: 44px;
-    }
-
-    .footer {
-        padding-top: 40px;
-    }
-
 }
