@@ -2,8 +2,8 @@
     --bg-color: #111111;
     --text-color: #eeeeee;
     --dot-color: #212121;
-    --dot-size: 0.7px;
-    --dot-gap: 14px;
+    --dot-size: 1.6px;
+    --dot-gap: 20px;
     --selection-bg: #E8732A;
     --selection-text: #ffffff;
     --canvas-width: 1440px;
@@ -56,9 +56,24 @@ body::before {
     inset: 0;
     z-index: 0;
     pointer-events: none;
-    background-image: radial-gradient(var(--dot-color) var(--dot-size), transparent calc(var(--dot-size) + 0.5px));
-    background-size: var(--dot-gap) var(--dot-gap);
+    background-image: repeating-linear-gradient(
+        to right,
+        var(--dot-color) 0 var(--dot-size),
+        transparent var(--dot-size) var(--dot-gap)
+    );
+    -webkit-mask-image: repeating-linear-gradient(
+        to bottom,
+        #000 0 var(--dot-size),
+        transparent var(--dot-size) var(--dot-gap)
+    );
+    mask-image: repeating-linear-gradient(
+        to bottom,
+        #000 0 var(--dot-size),
+        transparent var(--dot-size) var(--dot-gap)
+    );
     background-position: center;
+    -webkit-mask-position: center;
+    mask-position: center;
 }
 
 .skip-link {
