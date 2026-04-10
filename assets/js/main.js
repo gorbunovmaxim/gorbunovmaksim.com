@@ -1,110 +1,46 @@
-const DESIGN_WIDTH = 1440;
-let rafId = null;
-let scrollAnimationId = null;
-
-function smoothScrollToTop(duration = 650) {
-    const startY = window.scrollY || window.pageYOffset;
-    if (startY <= 0) {
+(function initBelgradeClock() {
+    const timeNode = document.getElementById('belgrade-time');
+    if (!timeNode) {
         return;
     }
 
-    if (scrollAnimationId) {
-        cancelAnimationFrame(scrollAnimationId);
-    }
-
-    const startTime = performance.now();
-
-    const animate = (currentTime) => {
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        const easedProgress =
-            progress < 0.5
-                ? 2 * progress * progress
-                : 1 - Math.pow(-2 * progress + 2, 2) / 2;
-
-        const nextY = Math.round(startY * (1 - easedProgress));
-        window.scrollTo(0, nextY);
-
-        if (progress < 1 && nextY > 0) {
-            scrollAnimationId = requestAnimationFrame(animate);
-        } else {
-            window.scrollTo(0, 0);
-            scrollAnimationId = null;
-        }
+    const timeZone = 'Europe/Belgrade';
+    const formatters = {
+        hour24: new Intl.DateTimeFormat('en-GB', {
+            timeZone,
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false,
+        }),
+        hour12: new Intl.DateTimeFormat('en-US', {
+            timeZone,
+            hour: 'numeric',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: true,
+        }),
     };
 
-    scrollAnimationId = requestAnimationFrame(animate);
-}
+    let is24Hour = true;
 
-function updateScale() {
-    const stage = document.querySelector('.scale-stage');
-    const site = document.querySelector('.site');
+    function renderTime() {
+        const now = new Date();
+        const currentTime = is24Hour
+            ? formatters.hour24.format(now)
+            : formatters.hour12.format(now);
 
-    if (!stage || !site) {
-        return;
+        timeNode.textContent = currentTime;
+        timeNode.setAttribute('aria-label', is24Hour
+            ? 'Belgrade time. Click to switch to 12-hour format.'
+            : 'Belgrade time. Click to switch to 24-hour format.');
     }
 
-    const viewportWidth = window.innerWidth;
-
-    if (viewportWidth <= DESIGN_WIDTH) {
-        site.style.transform = '';
-        site.style.marginLeft = '';
-        stage.style.height = '';
-        return;
-    }
-
-    const scale = viewportWidth / DESIGN_WIDTH;
-
-    site.style.transform = `scale(${scale})`;
-    site.style.marginLeft = '0';
-    stage.style.height = `${site.offsetHeight * scale}px`;
-}
-
-function scheduleUpdate() {
-    if (rafId) {
-        cancelAnimationFrame(rafId);
-    }
-
-    rafId = requestAnimationFrame(() => {
-        updateScale();
+    timeNode.addEventListener('click', () => {
+        is24Hour = !is24Hour;
+        renderTime();
     });
-}
 
-function init() {
-    const site = document.querySelector('.site');
-    const goUpLink = document.querySelector('.go-up-link');
-    if (!site) {
-        return;
-    }
-
-    updateScale();
-    window.addEventListener('resize', scheduleUpdate);
-    window.addEventListener('load', scheduleUpdate);
-
-    if (document.fonts && document.fonts.ready) {
-        document.fonts.ready.then(() => {
-            scheduleUpdate();
-            setTimeout(scheduleUpdate, 100);
-        });
-    }
-
-    if ('ResizeObserver' in window) {
-        const observer = new ResizeObserver(() => {
-            scheduleUpdate();
-        });
-        observer.observe(site);
-    }
-
-    if (goUpLink) {
-        goUpLink.addEventListener('click', (event) => {
-            event.preventDefault();
-            smoothScrollToTop();
-        });
-    }
-}
-
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-} else {
-    init();
-}
+    renderTime();
+    window.setInterval(renderTime, 1000);
+})();
